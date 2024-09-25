@@ -4,6 +4,25 @@ const elCloseNavbar = document.querySelector('.site-nav__header-btn');
 const elFeatureaLinks = document.querySelectorAll('.features__link');
 const elFeaturesItems = document.querySelectorAll('.features__item');
 const elFeaturesInners = document.querySelectorAll('.features__inner');
+const elFaqItemQuetions = document.querySelectorAll('.faq__item-quetion');
+
+elFaqItemQuetions.forEach(elFaqItemQuetion => {
+	elFaqItemQuetion.addEventListener('click', () => {
+		const activeItem = document.querySelector('.faq__item-quetion.active');
+		if (activeItem && activeItem !== elFaqItemQuetion) {
+			activeItem.classList.remove('active');
+			activeItem.nextElementSibling.style.maxHeight = null;
+		}
+
+		elFaqItemQuetion.classList.toggle('.active');
+		const answer = elFaqItemQuetion.nextElementSibling;
+		if (elFaqItemQuetion.classList.contains('active')) {
+			answer.style.maxHeight = answer.scrollHeight + 'px';
+		} else {
+			answer.style.maxHeight = null;
+		}
+	});
+});
 
 function removeItem() {
 	elFeaturesInners.forEach(elFeaturesInner => {
